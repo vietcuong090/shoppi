@@ -1,14 +1,34 @@
 import userModel from '../models/userModel.js';
 import validator from 'validator';
 import bcrypt from 'bcrypt';
-import { Jwt } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
 
 const createToken = (id) => {
-  return jwt.sign({ id });
+  return jwt.sign({ id }, process.env.JWT_SECRET);
 };
 
 // user Login Route
-const loginUser = async (req, res) => {};
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await userModel.findOne({ email });
+
+    if (!user) {
+      return res.json({ success: false, message: "User doesn't Exist" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      const token = createToken(user._id);
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: 'Invaid credentials' });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // user Register Route
 const registerUser = async (req, res) => {
@@ -37,11 +57,27 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-    // const token =
-  } catch (error) {}
+    const token = createToken(user._id);
+
+    res.json({ success: true, token });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
 };
 
 // admin Login Route
-const adminLogin = async (req, res) => {};
+const adminLogin = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    if (email === process.env.ADMIN_EMAIL && password === process.env.ADMIN_PASS) {
+      const token = jwt.sign(email + password, process.env.JWT_SECRET);
+
+      res.json({ success: true, token });
+    } else {
+      res.json({ success: false, message: 'Invalid credentials' });
+    }
+  } catch (error) {}
+};
+
 export { loginUser, registerUser, adminLogin };
-//6-58-53
