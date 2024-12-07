@@ -5,7 +5,7 @@ const Item = ({ product }) => {
   return (
     <div className='ring-1 ring-slate-900/5 rounded-xl bg-white overflow-hidden'>
       <Link to={`/product/${product._id}`} className='flexCenter relative'>
-        <img src={product.image} alt='productImg' />
+        <img src={product.image[0]} alt='productImg' />
       </Link>
       <div className='p-3'>
         <h4 className='h4 line-clamp-1 !my-0'>{product.name}</h4>

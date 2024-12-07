@@ -44,7 +44,7 @@ const registerUser = async (req, res) => {
       return res.json({ success: false, message: 'Please Enter a valid email' });
     }
     if (password.length < 8) {
-      return res.json({ success: false, message: 'Please Enter a valid email' });
+      return res.json({ success: false, message: 'Please Enter a valid password' });
     }
     // hash user password
     const salt = await bcrypt.genSalt(10);

@@ -52,7 +52,6 @@ import img48 from './product_48.png';
 import img49 from './product_49.png';
 import img50 from './product_50.png';
 import img51 from './product_51.png';
-import img52 from './product_52.png';
 
 export const products = [
   {
@@ -97,8 +96,8 @@ export const products = [
     name: 'Classic Men Casual T-Shirt',
     description: 'A casual t-shirt made from breathable cotton, suitable for any informal occasion.',
     price: 180,
-    image: [img4_1],
-    // image: [img4_1, img4_2, img4_3, img4_4],
+    // image: [img4_1],
+    image: [img4_1, img4_2, img4_3, img4_4],
     category: 'Men',
     subCategory: 'Topwear',
     sizes: ['S', 'M', 'XXL'],

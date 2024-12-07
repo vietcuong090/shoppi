@@ -8,10 +8,8 @@ import { TbArrowNarrowRight } from 'react-icons/tb';
 import { ShopContext } from '../context/ShopContext';
 
 const Header = () => {
-  const { setShowSearch, getCartCount } = useContext(ShopContext);
+  const { setShowSearch, getCartCount, navigate, token, setToken } = useContext(ShopContext);
   const [menuOpened, setMenuOpened] = useState(false);
-  const [token, setToken] = useState(false);
-  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setMenuOpened((prev) => !prev);

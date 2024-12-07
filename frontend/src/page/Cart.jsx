@@ -28,13 +28,13 @@ const Cart = () => {
   }, [cartItems]);
 
   const increment = (id, size) => {
-    const key = `${id}-${size}`;
+    const key = ` ${id}-${size}`;
     const newValue = quantites[key] + 1;
     setQuantites((prev) => ({ ...prev, [key]: newValue }));
     updateQuantity(id, size, newValue);
   };
   const decrement = (id, size) => {
-    const key = `${id}-${size}`;
+    const key = ` ${id}-${size}`;
     if (quantites[key] > 1) {
       const newValue = quantites[key] - 1;
       setQuantites((prev) => ({ ...prev, [key]: newValue }));
@@ -66,7 +66,7 @@ const Cart = () => {
                   <div className='flex items-center gap-x-3'>
                     <div className='flex items-start gap-6'>
                       <img
-                        src={productData.image[0]}
+                        src={productData?.image[0]}
                         alt=''
                         className='w-16
                       sm:w-18 rounded'
@@ -74,7 +74,7 @@ const Cart = () => {
                     </div>
                     <div className='flex flex-col w-full'>
                       <div className='flexBetween'>
-                        <h5 className='h5 !my-0 line-clamp-1'>{productData.name}</h5>
+                        <h5 className='h5 !my-0 line-clamp-1'>{productData?.name}</h5>
                         <FaRegWindowClose
                           onClick={() => updateQuantity(item._id, item.size, 0)}
                           className='cursor-pointer
@@ -104,7 +104,7 @@ const Cart = () => {
                         </div>
                         <h4 className='h4'>
                           {currency}
-                          {productData.price}
+                          {productData?.price}
                         </h4>
                       </div>
                     </div>

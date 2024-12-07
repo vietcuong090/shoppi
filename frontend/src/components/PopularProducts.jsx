@@ -1,11 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Title from './Title';
-import { products } from '../assets/data';
 import { ShopContext } from '../context/ShopContext';
 import Item from './Item';
 
 const PopularProducts = () => {
-  const {} = useContext(ShopContext);
+  const { products } = useContext(ShopContext);
   const [popularProducts, setPopularProducts] = useState([]);
   useEffect(() => {
     const data = products.filter((item) => item.popular);
@@ -17,7 +16,7 @@ const PopularProducts = () => {
       {/* container */}
       <div
         className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3
-      xl:grid-cols-4 gap-8'
+        lg:grid-cols-4 xl:grid-cols-5 gap-8'
       >
         {popularProducts.map((product) => (
           <div key={product._id}>
