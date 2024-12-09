@@ -6,8 +6,6 @@ import { useLocation } from 'react-router-dom';
 const ShowSearch = () => {
   const { search, setSearch, showSearch, setShowSearch } = useContext(ShopContext);
   const [visible, setVisible] = useState(false);
-  console.log('showSearch:', showSearch);
-  console.log('visible:', visible);
 
   const location = useLocation();
 

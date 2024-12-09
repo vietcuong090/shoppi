@@ -4,6 +4,8 @@ import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { resolvePath } from 'react-router-dom';
+import { FcGoogle } from 'react-icons/fc';
+import { FaFacebook } from 'react-icons/fa';
 
 const Login = () => {
   const [currState, setCurrState] = useState('Login');
@@ -47,18 +49,17 @@ const Login = () => {
 
   return (
     <section className='absolute top-0 left-0 h-full w-full z-50 bg-white'>
-      {/* container */}
       <div className='flex h-full w-full'>
         {/* Form Side */}
         <div className='flex w-full sm:w-1/2 items-center justify-center'>
           <form
             onSubmit={onSubmitHandler}
-            className='flex flex-col items-center w-[90%] sm:max-w-md
-          m-auto gap-y-5 text-gray-800'
+            className='flex flex-col items-center w-[90%] sm:max-w-md m-auto gap-y-5 text-gray-800'
           >
             <div className='w-full mb-4'>
               <h3 className='bold-36'>{currState}</h3>
             </div>
+
             {currState === 'Sign Up' && (
               <div className='w-full'>
                 <label htmlFor='name' className='medium-15'>
@@ -74,6 +75,7 @@ const Login = () => {
                 />
               </div>
             )}
+
             <div className='w-full'>
               <label htmlFor='email' className='medium-15'>
                 Email
@@ -87,6 +89,7 @@ const Login = () => {
                 className='w-full px-3 py-1.5 ring-slate-900/10 rounded bg-primary mt-1'
               />
             </div>
+
             <div className='w-full'>
               <label htmlFor='password' className='medium-15'>
                 Password
@@ -100,13 +103,31 @@ const Login = () => {
                 className='w-full px-3 py-1.5 ring-slate-900/10 rounded bg-primary mt-1'
               />
             </div>
+
             <button className='btn-dark w-full mt-5 !py[9px]'>{currState === 'Sign Up' ? 'Sign Up' : 'Login'}</button>
 
-            <div className='w-full flex flex-col gap-y-3'>
+            <button
+              type='button'
+              className='flex items-center justify-center w-full mt-3 py-2 px-4 border border-gray-300 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all'
+              // onClick={handleGoogleLogin}
+            >
+              <FcGoogle size={24} className='mr-2' />
+              {currState === 'Sign Up' ? 'Sign up with Google' : 'Sign in with Google'}
+            </button>
+            <button
+              type='button'
+              className='flex items-center justify-center w-full mt-3 py-2 px-4 border border-blue-600 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-all'
+              // onClick={handleFacebookLogin}
+            >
+              <FaFacebook size={24} className='mr-2' />
+              {currState === 'Sign Up' ? 'Sign up with Facebook' : 'Sign in with Facebook'}
+            </button>
+
+            <div className='w-full flex flex-col gap-y-3 mt-4'>
               <div className='underline medium-15'>Forgot your password</div>
               {currState === 'Login' ? (
                 <div className='underline medium-15'>
-                  Don't have and account?
+                  Don't have an account?
                   <span onClick={() => setCurrState('Sign Up')} className='cursor-pointer'>
                     Create account
                   </span>
@@ -122,7 +143,8 @@ const Login = () => {
             </div>
           </form>
         </div>
-        {/* image side */}
+
+        {/* Image Side */}
         <div className='w-1/2 hidden sm:block'>
           <img src={loginImg} alt='' className='object-cover h-full' />
         </div>

@@ -1,9 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ShopContext } from '../context/ShopContext';
+import axios from 'axios';
 
 const Order = () => {
-  const { products, currency } = useContext(ShopContext);
-  console.log(products);
+  const { backendUrl, token, currency } = useContext(ShopContext);
+
+  const [orderData, setOrderData] = useState([]);
+  const loadOrderData = async () => {
+    try {
+      if (!token) {
+        return null;
+      }
+      const response = await axios.post(backendUrl + '/api/order/userorders', {}, { headers: { token } });
+      if (response.data.success) {
+        let allOrdersItem = [];
+        response.data.orders.map((order) => {
+          order.items.map((item) => {
+            item['status'] = order.status;
+            item['payment'] = order.payment;
+            item['paymentMethod'] = order.paymentMethod;
+            item['data'] = order.data;
+            allOrdersItem.push(item);
+          });
+        });
+        setOrderData(allOrdersItem.reverse());
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    loadOrderData();
+  }, [token]);
 
   return (
     <section>
@@ -19,7 +48,7 @@ const Order = () => {
             </h3>
           </div>
           {/* container */}
-          {products.slice(1, 5).map((item, i) => (
+          {orderData.slice(1, 5).map((item, i) => (
             <div key={i}>
               <div className='py-4 text-gray-700 flex flex-col gap-4'>
                 <div className='flex gap-x-3 w-full'>
@@ -54,17 +83,19 @@ const Order = () => {
                           <p className='text-gray-400'>{new Date(item.date).toDateString()}</p>
                         </div>
                         <div className='flex items-center gap-x-2'>
-                          <h5 className='medium-14'>Payment</h5>
-                          <p className='text-gray-400'>paymentMethod</p>
+                          <h5 className='medium-14'>payment</h5>
+                          <p className='text-gray-400'>{item.paymentMethod}</p>
                         </div>
                       </div>
                       {/* Status & button */}
                       <div className='flex flex-col xl:flex-row gap-3'>
                         <div className='flex items-center gap-2'>
                           <p className='min-w-2 h-2 rounded-full bg-green-500'></p>
-                          <p className=''>Status</p>
+                          <p className=''>{item.status}</p>
                         </div>
-                        <button className='btn-secondary !p-1.5 !text-xs'>Track Order</button>
+                        <button onClick={loadOrderData} className='btn-secondary !p-1.5 !text-xs'>
+                          Track Order
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -1,5 +1,12 @@
 import express from 'express';
-import { allOrder, placeOrder, placeOrderStripe, updateStatus, userOrders } from '../controllers/orderContrller.js';
+import {
+  allOrder,
+  placeOrder,
+  placeOrderStripe,
+  updateStatus,
+  userOrders,
+  verifyStripe,
+} from '../controllers/orderContrller.js';
 import adminAuth from '../middleware/adminAuth.js';
 import authUser from '../middleware/auth.js';
 
@@ -13,7 +20,10 @@ orderRouter.post('/status', adminAuth, updateStatus);
 orderRouter.post('/place', authUser, placeOrder);
 orderRouter.post('/stripe', authUser, placeOrderStripe);
 
+// Verify Payment
+orderRouter.post('/verifyStripe', authUser, verifyStripe);
+
 // For User
-orderRouter / post('/userorders', authUser, userOrders);
+orderRouter.post('/userorders', authUser, userOrders);
 
 export default orderRouter;

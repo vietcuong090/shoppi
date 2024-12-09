@@ -28,13 +28,13 @@ const Cart = () => {
   }, [cartItems]);
 
   const increment = (id, size) => {
-    const key = ` ${id}-${size}`;
+    const key = `${id}-${size}`;
     const newValue = quantites[key] + 1;
     setQuantites((prev) => ({ ...prev, [key]: newValue }));
     updateQuantity(id, size, newValue);
   };
   const decrement = (id, size) => {
-    const key = ` ${id}-${size}`;
+    const key = `${id}-${size}`;
     if (quantites[key] > 1) {
       const newValue = quantites[key] - 1;
       setQuantites((prev) => ({ ...prev, [key]: newValue }));
