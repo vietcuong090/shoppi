@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
-import loginImg from '../assets/login.png';
+import loginImage from '../assets/login.png';
+
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -146,7 +147,7 @@ const Login = () => {
 
         {/* Image Side */}
         <div className='w-1/2 hidden sm:block'>
-          <img src={loginImg} alt='' className='object-cover h-full' />
+          <img src={loginImage} alt='' className='object-cover h-full' />
         </div>
       </div>
     </section>
@@ -154,4 +155,3 @@ const Login = () => {
 };
 
 export default Login;
-//5-51-43
