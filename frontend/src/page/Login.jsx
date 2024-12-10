@@ -4,14 +4,15 @@ import loginImage from '../assets/login.png';
 import { ShopContext } from '../context/ShopContext';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { resolvePath } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { FaFacebook } from 'react-icons/fa';
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [currState, setCurrState] = useState('Login');
   const { token, setToken, backendUrl, navigate } = useContext(ShopContext);
 
+  const { loginUser, signInWithGoogle } = useAuth();
   const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -47,6 +48,16 @@ const Login = () => {
       navigate('/');
     }
   }, [token]);
+
+  const handleGoogleSignIn = async () => {
+    try {
+      await signInWithGoogle();
+      alert('Login successful!');
+      navigate('/');
+    } catch (error) {
+      alert('Google sign in failed!');
+    }
+  };
 
   return (
     <section className='absolute top-0 left-0 h-full w-full z-50 bg-white'>
@@ -110,7 +121,7 @@ const Login = () => {
             <button
               type='button'
               className='flex items-center justify-center w-full mt-3 py-2 px-4 border border-gray-300 rounded-lg bg-white text-gray-700 hover:bg-gray-100 transition-all'
-              // onClick={handleGoogleLogin}
+              onClick={handleGoogleSignIn}
             >
               <FcGoogle size={24} className='mr-2' />
               {currState === 'Sign Up' ? 'Sign up with Google' : 'Sign in with Google'}

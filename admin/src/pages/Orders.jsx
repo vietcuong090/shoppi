@@ -98,11 +98,11 @@ const Orders = ({ token }) => {
               </p>
               <p>{order.address.phone}</p>
             </div>
-            <div className=''>
-              <p className='text-sm'>Items: {order.items.length}</p>
-              <p className='mt-3'>method: {order.paymentMethod}</p>
-              <p>Payment: {order.payment ? 'Done' : 'Pending'}</p>
-              <p>Date: {new Date(order.date).toLocaleDateString()}</p>
+            <div className='medium-14'>
+              <p className='text-sm text-tertiary'>Items: {order.items.length}</p>
+              <p className='mt-3 text-tertiary'>method: {order.paymentMethod}</p>
+              <p className='text-tertiary'>Payment: {order.payment ? 'Done' : 'Pending'}</p>
+              <p className='text-tertiary'>Date: {new Date(order.date).toLocaleDateString()}</p>
             </div>
             <p className='text-sm font-semibold'>
               {currency}

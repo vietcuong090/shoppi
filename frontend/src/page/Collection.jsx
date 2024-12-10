@@ -41,9 +41,9 @@ const Collection = () => {
   const applySorting = (productsList) => {
     switch (sortType) {
       case 'low':
-        return productsList.sort((a, b) => a.price - b.price); // Sắp xếp giá thấp
+        return productsList.sort((a, b) => a.price - b.price);
       case 'high':
-        return productsList.sort((a, b) => b.price - a.price); // Sắp xếp giá cao
+        return productsList.sort((a, b) => b.price - a.price);
       default:
         return productsList; // Mặc định (không sắp xếp)
     }
