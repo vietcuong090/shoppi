@@ -11,6 +11,10 @@
   font-family: 'Inter', system-ui;
 }
 
+body {
+  position: relative;
+}
+
 /* width */
 ::-webkit-scrollbar {
   width: 10px;

@@ -58,9 +58,9 @@ const Collection = () => {
 
   return (
     <section className='max-padd-container'>
-      <div className='flex flex-col sm:flex-row gap-8 mt-8 xl:mt-6'>
+      <div className='flex flex-col sm:flex-row gap-8 mt-8 xl:mt-6 h-auto'>
         {/* Phần bộ lọc */}
-        <div className='min-w-60 bg-white p-4 rounded-2xl'>
+        <div className='min-w-60 bg-white p-4 rounded-2xl sticky top-0 self-start'>
           {/* Bộ lọc danh mục */}
           <ShowSearch />
           {/* Category fitler */}

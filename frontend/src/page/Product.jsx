@@ -37,7 +37,7 @@ const Product = () => {
         <div className='max-padd-container flex gap-12 flex-col xl:flex-row bg-white py-16 rounded-2xl'>
           {/* Thư viện ảnh */}
           <div className='flex flex-1 gap-x-2 xl:flex-1'>
-            <div className='flexCenter flex-col gap-[7px] flex-wrap'>
+            <div className='flexCenter flex-col gap-[7px] flex-wrap mb-10'>
               {product.image.map((item, i) => (
                 <img
                   key={i}
