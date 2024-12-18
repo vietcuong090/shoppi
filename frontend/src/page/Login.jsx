@@ -66,7 +66,8 @@ const Login = () => {
         <div className='flex w-full sm:w-1/2 items-center justify-center'>
           <form
             onSubmit={onSubmitHandler}
-            className='flex flex-col items-center w-[90%] sm:max-w-md m-auto gap-y-5 text-gray-800'
+            className='flex flex-col items-center w-[90%] sm:max-w-md
+            m-auto gap-y-5 text-gray-800'
           >
             <div className='w-full mb-4'>
               <h3 className='bold-36'>{currState}</h3>
@@ -158,7 +159,7 @@ const Login = () => {
 
         {/* Image Side */}
         <div className='w-1/2 hidden sm:block'>
-          <img src={loginImage} alt='' className='object-cover h-full' />
+          <img src={loginImage} alt='' className='object-cover h-screen w-screen' />
         </div>
       </div>
     </section>

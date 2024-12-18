@@ -68,9 +68,10 @@ const Login = ({ setToken }) => {
             </button>
           </form>
         </div>
+
         {/* image side */}
         <div className='w-1/2 hidden sm:block'>
-          <img src={loginImg} alt='' className='object-cover h-full' />
+          <img src={loginImg} alt='' className='object-cover h-full w-full' />
         </div>
       </div>
     </section>

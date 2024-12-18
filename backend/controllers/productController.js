@@ -79,4 +79,27 @@ const singleProduct = async (req, res) => {
   }
 };
 
-export { addProduct, listProduct, removeProduct, singleProduct };
+// update product
+const updateProduct = async (req, res) => {
+  try {
+    const { productId } = req.body;
+    console.log('Product ID:', productId);
+    console.log('Request Body:', req.body);
+
+    const updatedProduct = await productModel.findByIdAndUpdate(productId, req.body, { new: true });
+    if (!updatedProduct) {
+      return res.json({
+        success: false,
+        message: 'Product is not Found!',
+      });
+    }
+
+    // Nếu sản phẩm được cập nhật thành công
+    return res.json({ success: true, products: updatedProduct });
+  } catch (error) {
+    console.log(error);
+    return res.json({ success: false, message: error.message });
+  }
+};
+
+export { addProduct, listProduct, removeProduct, singleProduct, updateProduct };

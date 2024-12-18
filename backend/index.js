@@ -9,7 +9,6 @@ import cartRouter from './routes/cartRouter.js';
 import orderRouter from './routes/orderRouter.js';
 
 // app config
-
 const app = express();
 const port = process.env.PORT || 5000;
 

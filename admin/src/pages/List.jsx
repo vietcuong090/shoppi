@@ -3,9 +3,12 @@ import React, { useEffect, useState } from 'react';
 import { backend_url, currency } from '../App';
 import { toast } from 'react-toastify';
 import { TbTrash } from 'react-icons/tb';
+import { FaPen } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
 
 const List = ({ token }) => {
   const [list, setList] = useState([]);
+  const navigate = useNavigate();
 
   const fetchList = async () => {
     try {
@@ -24,6 +27,20 @@ const List = ({ token }) => {
   const removeProduct = async (id) => {
     try {
       const response = await axios.post(backend_url + '/api/product/remove', { id }, { headers: { token } });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchList();
+      } else {
+        toast.error(response.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    }
+  };
+  const updateProduct = async (id) => {
+    try {
+      const response = await axios.post(backend_url + '/api/product/edit', { id }, { headers: { token } });
       if (response.data.success) {
         toast.success(response.data.message);
         await fetchList();
@@ -54,7 +71,7 @@ const List = ({ token }) => {
           <h5>Name</h5>
           <h5>Category</h5>
           <h5>Price</h5>
-          <h5>Remove</h5>
+          <h5>Actions</h5>
         </div>
         {/* Product List */}
         {list.map((item) => (
@@ -71,12 +88,13 @@ const List = ({ token }) => {
               {currency}
               {item.price}
             </div>
-            <div>
+            <div className='flex items-center gap-2'>
               <TbTrash
                 onClick={() => removeProduct(item._id)}
                 className='text-right md:text-center cursor-pointer
               text-lg'
               />
+              <FaPen onClick={() => navigate(`/edit/${item._id}`)} className='cursor-pointer text-lg' />
             </div>
           </div>
         ))}
@@ -86,4 +104,3 @@ const List = ({ token }) => {
 };
 
 export default List;
-//10-32

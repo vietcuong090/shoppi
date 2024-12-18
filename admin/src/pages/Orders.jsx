@@ -56,7 +56,7 @@ const Orders = ({ token }) => {
             key={order._id}
             className='grid grid-cols-1 sm:grid-clos-[0.5fr_2fr_1fr]
           lg:grid-cols-[0.5fr_2fr_1fr_0.5fr_1fr] items-start p-3 text-gray-700 bg-white
-          rounded-lg'
+          rounded-lg ml-1'
           >
             <TfiPackage className='text-3xl text-secondary' />
             <div>

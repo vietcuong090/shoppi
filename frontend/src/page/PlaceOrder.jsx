@@ -211,6 +211,12 @@ const PlaceOrder = () => {
                   >
                     Cash on Delivery
                   </div>
+                  <div
+                    // onClick={() => setMethod('cod')}
+                    className={`'text-secondary !font-bold' : ''} btn-light !py-1 cursor-pointer`}
+                  >
+                    MoMo
+                  </div>
                 </div>
               </div>
               <div className=''>
