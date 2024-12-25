@@ -6,6 +6,7 @@ import { GiBeachBag } from 'react-icons/gi';
 import { FaSearch } from 'react-icons/fa';
 import { TbArrowNarrowRight } from 'react-icons/tb';
 import { ShopContext } from '../context/ShopContext';
+import logoImage from '../assets/logo.png';
 
 const Header = () => {
   const { setShowSearch, getCartCount, navigate, token, setToken } = useContext(ShopContext);
@@ -29,7 +30,7 @@ const Header = () => {
             className='bg-white shadow-sm text-secondary flexCenter 
           h-28 w-28 px-2 absolute -top-5 rounded-full'
           >
-            LUXURY
+            <img src={logoImage} alt='' className='rounded-full object-cover w-full h-full' />
           </h4>
         </Link>
 
@@ -52,7 +53,7 @@ const Header = () => {
             className='bg-white shadow-sm text-secondary flexCenter 
           h-28 w-28 px-2 absolute -top-5 rounded-full'
           >
-            LUXURY
+            <img src={logoImage} alt='' className='rounded-full object-cover w-full h-full' />
           </h4>
         </Link>
 

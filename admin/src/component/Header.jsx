@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import logoImage from '../assets/logo.png';
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
         className='bg-white shadow-sm text-secondary flexCenter 
         h-28 w-28 px-2 absolute -top-5 rounded-full text-2xl'
       >
-        LUXURY
+        <img src={logoImage} alt='' className='rounded-full object-cover w-full h-full' />
       </h4>
     </header>
   );

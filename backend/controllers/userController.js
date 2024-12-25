@@ -15,14 +15,14 @@ const loginUser = async (req, res) => {
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.json({ success: false, message: "User doesn't Exist" });
+      return res.json({ success: false, message: 'Người dùng không tồn tại' });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (isMatch) {
       const token = createToken(user._id);
       res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: 'Invaid credentials' });
+      res.json({ success: false, message: 'Thông tin xác thực không hợp lệ.' });
     }
   } catch (error) {
     console.log(error);
@@ -37,14 +37,14 @@ const registerUser = async (req, res) => {
     // checking if email is already exists or not
     const exists = await userModel.findOne({ email });
     if (exists) {
-      return res.json({ success: false, message: 'User already exists' });
+      return res.json({ success: false, message: 'Người dùng đã tồn tại' });
     }
     // validate password and checking string password
     if (!validator.isEmail(email)) {
-      return res.json({ success: false, message: 'Please Enter a valid email' });
+      return res.json({ success: false, message: 'Vui lòng nhập email hợp lệ' });
     }
     if (password.length < 8) {
-      return res.json({ success: false, message: 'Please Enter a valid password' });
+      return res.json({ success: false, message: 'Vui lòng nhập mật khẩu hợp lệ' });
     }
     // hash user password
     const salt = await bcrypt.genSalt(10);
@@ -75,7 +75,7 @@ const adminLogin = async (req, res) => {
 
       res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: 'Invalid credentials' });
+      res.json({ success: false, message: 'Thông tin xác thực không hợp lệ' });
     }
   } catch (error) {}
 };
