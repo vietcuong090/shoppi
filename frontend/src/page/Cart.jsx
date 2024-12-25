@@ -84,7 +84,7 @@ const Cart = () => {
                       <p className='bold-14 my-0.5'>{item.size}</p>
                       <div className='flexBetween'>
                         <div
-                          className='flex items-center ring-1
+                          className='flex items-center ring-1                   
                         ring-slate-900/5 rounded-full overflow-hidden
                         bg-primary'
                         >
